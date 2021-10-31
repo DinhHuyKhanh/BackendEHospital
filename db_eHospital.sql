@@ -1,15 +1,24 @@
 CREATE DATABASE db_eHospital;
-
 USE db_eHospital;
 
 CREATE TABLE IF NOT EXISTS `Account`(
-	`username`  		VARCHAR(255) PRIMARY KEY,
-    `password`			NVARCHAR(255) NOT NULL,
-    `role` 				enum("Admin","User") NOT NULL DEFAULT "User"
+	id					INT AUTO_INCREMENT PRIMARY KEY,
+	`username`  		VARCHAR(255) UNIQUE NOT NULL ,
+    `password`			NVARCHAR(255) NOT NULL
+);
+CREATE TABLE IF NOT EXISTS `role`(
+	id				INT AUTO_INCREMENT PRIMARY KEY,
+    role_name 		ENUM("USER","ADMIN")
+);
+
+CREATE TABLE IF NOT EXISTS `user_roles`(
+    user_id 		INT NOT NULL,
+    role_id		INT NOT NULL,
+    CONSTRAINT fk_user	 FOREIGN KEY(user_id) REFERENCES `Account`(id)
 );
 
 -- các khoa
-CREATE TABLE IF NOT EXISTS `Department`( 
+CREATE TABLE IF NOT EXISTS `Department`(
 	id 			INT AUTO_INCREMENT PRIMARY KEY,
     department	NVARCHAR(255)
 );

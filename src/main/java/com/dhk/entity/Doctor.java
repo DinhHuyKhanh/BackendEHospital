@@ -5,6 +5,7 @@ import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -35,7 +36,7 @@ public class Doctor implements Serializable {
 	
 	
 	@Column(name="gender")
-	private gender gender;
+	private String gender;
 	
 	
 	@Column(name="address", length = 255)
@@ -44,9 +45,9 @@ public class Doctor implements Serializable {
 	@Column(name="numberPhone")
 	private Long numberPhone;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "department_id",referencedColumnName = "id")
-	private Department department;
+	private Department department;	
 
 	public int getId() {
 		return id;
@@ -72,11 +73,11 @@ public class Doctor implements Serializable {
 		this.birthday = birthday;
 	}
 
-	public gender getGender() {
+	public String getGender() {
 		return gender;
 	}
 
-	public void setGender(gender gender) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
 

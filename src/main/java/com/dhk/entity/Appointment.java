@@ -36,9 +36,8 @@ public class Appointment implements Serializable{
 	@Column(name="birthday")
 	private Date birthday;
 	
-	@Column(name="gender")
-	@Enumerated(EnumType.STRING)
-	private gender gender;
+	@Column(name="gender",length = 20)
+	private String gender;
 	
 	@Column(name="address",length = 255)
 	private String address;
@@ -49,9 +48,8 @@ public class Appointment implements Serializable{
 	@Column(name="start", nullable = false)
 	private SimpleDateFormat start; 
 	
-	@Enumerated(EnumType.STRING)
-	@Column(name="status",nullable = false)
-	private status status;
+	@Column(name="status",nullable = false,length = 100)
+	private String status;
 
 	public int getId() {
 		return id;
@@ -77,11 +75,11 @@ public class Appointment implements Serializable{
 		this.birthday = birthday;
 	}
 
-	public gender getGender() {
+	public String getGender() {
 		return gender;
 	}
 
-	public void setGender(gender gender) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
 
@@ -109,11 +107,11 @@ public class Appointment implements Serializable{
 		this.start = start;
 	}
 
-	public status getStatus() {
+	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(status status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 	
