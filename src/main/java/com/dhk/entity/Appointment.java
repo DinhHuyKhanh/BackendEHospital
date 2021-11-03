@@ -11,6 +11,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -50,6 +52,9 @@ public class Appointment implements Serializable{
 	
 	@Column(name="status",nullable = false,length = 100)
 	private String status;
+	
+	@Column(name="account_id",nullable = false)
+	private Account accoutnId;
 
 	public int getId() {
 		return id;
@@ -114,5 +119,15 @@ public class Appointment implements Serializable{
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
+	public Account getAccoutnId() {
+		return accoutnId;
+	}
+
+	public void setAccoutnId(Account accoutnId) {
+		this.accoutnId = accoutnId;
+	}
+	
+	
 	
 }
