@@ -43,10 +43,14 @@ CREATE TABLE IF NOT EXISTS `Appointment`(
     gender 			ENUM("Male","Female"), -- giới tính
     address			NVARCHAR(255), -- địa chỉ người đặt 
     numberPhone		INT(10) NOT NULL, -- số điện thoại của người đặt
+    account_id		INT NOT NULL,
     `start` 		DATETIME NOT NULL, -- thời gian khám bệnh
 	`status`		ENUM("SUCCESS","APPROVAL","ABORT") NOT NULL DEFAULT "APPROVAL"
 );
 
+INSERT INTO `role`
+VALUES (1, "ADMIN"),
+		(2,"USER");
 
 
 
