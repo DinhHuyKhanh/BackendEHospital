@@ -63,10 +63,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 		.authorizeRequests()
 		.antMatchers("/api/auth/signup"
-					,"/api/auth/signin")
+					,"/api/auth/signin",
+					"/api/v1/departments",
+					"/api/v1/appointments/create",
+					"/api/v1/appointments/update")
 		.permitAll()
-		.antMatchers("/api/v1/helloworld")
+		.antMatchers("/api/v1/departments/**",
+				"/api/v1/doctors/create",
+				"/api/v1/appointments/**")
 		.hasAuthority("ADMIN")
+		.antMatchers("/api/v1/appointments/id={id}")
+		.hasAuthority("USER")
 		.anyRequest()
 		.authenticated();
 //		

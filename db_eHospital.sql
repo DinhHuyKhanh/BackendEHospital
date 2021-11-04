@@ -26,11 +26,11 @@ CREATE TABLE IF NOT EXISTS `Department`(
  -- danh sách bác sỹ 
 CREATE TABLE IF NOT EXISTS `Doctor`(
 	id 			INT AUTO_INCREMENT PRIMARY KEY,
-    fullName 	NVARCHAR(255) NOT NULL,
+    fullName 	NVARCHAR(255) DEFAULT NULL,
 	birthday		DATE, -- ngày sinh của người đặt
     gender 			ENUM("Male","Female"), -- giới tínH
     address			NVARCHAR(255), -- địa chỉ người đặt 
-    numberPhone		INT(10) UNIQUE NOT NULL, -- số điện thoại của người đặt
+    numberPhone		VARCHAR(15) UNIQUE, -- số điện thoại của người đặt
     department_id	INT NOT NULL,
 	CONSTRAINT dt_department	FOREIGN KEY(department_id)	REFERENCES `Department`(id)
 );
@@ -38,12 +38,13 @@ CREATE TABLE IF NOT EXISTS `Doctor`(
 -- Danh sách lịch hẹn
 CREATE TABLE IF NOT EXISTS `Appointment`(
 	id				INT AUTO_INCREMENT PRIMARY KEY, -- truong dinh danh
-	fullName 		NVARCHAR(255), -- họ và tên đầy đủ của người hẹn
+	fullName 		NVARCHAR(255) DEFAULT NULL, -- họ và tên đầy đủ của người hẹn
     birthday		DATE, -- ngày sinh của người đặt
     gender 			ENUM("Male","Female"), -- giới tính
-    address			NVARCHAR(255), -- địa chỉ người đặt 
-    numberPhone		INT(10) NOT NULL, -- số điện thoại của người đặt
-    account_id		INT NOT NULL,
+    address			NVARCHAR(255), -- địa chỉ người đặt
+    numberPhone		VARCHAR(15) NOT NULL DEFAULT '', -- số điện thoại của người đặt
+    accountId		INT NOT NULL, -- tài khoản đặt lịch
+    doctorId		INT,
     `start` 		DATETIME NOT NULL, -- thời gian khám bệnh
 	`status`		ENUM("SUCCESS","APPROVAL","ABORT") NOT NULL DEFAULT "APPROVAL"
 );
@@ -51,9 +52,21 @@ CREATE TABLE IF NOT EXISTS `Appointment`(
 INSERT INTO `role`
 VALUES (1, "ADMIN"),
 		(2,"USER");
+        
+        SELECT * FROM appointment;
+        select * from account;
+        
+-- ALTER TABLE `appointment`
+-- MODIFY COLUMN	numberPhone varchar(15) not null  default "unknow";
 
+-- ALTER TABLE `Doctor`
+-- ALTER fullName SET DEFAULT 'Unknown';
 
-
+-- chế độ nghiêm ngặt Strict_trains_table 
+-- set global sql_mode=''; 
+--  để tắt 
+-- set global sql_mode='STRICT_TRANS_TABLES'; 
+-- để bật
 
 
 

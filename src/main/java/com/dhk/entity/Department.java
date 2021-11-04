@@ -47,5 +47,11 @@ public class Department implements Serializable {
 		this.department = department;
 	}
 
+	public List<Doctor> getDoctors() {
+		return doctors;
+	}
+
+
+	
 	
 }
