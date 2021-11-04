@@ -32,11 +32,11 @@ public class Appointment implements Serializable{
 	@Column(name="id")
 	private int id;
 	
-	@Column(name="fullName",length = 255)
-	private String fullname;
+	@Column(name="fullName",length = 255, nullable = false)
+	private String fullName;
 	
 	@Column(name="birthday")
-	private Date birthday;
+	private String birthday;
 	
 	@Column(name="gender",length = 20)
 	private String gender;
@@ -45,17 +45,40 @@ public class Appointment implements Serializable{
 	private String address;
 	
 	@Column(name="numberPhone", nullable = false)
-	private Long numberPhone;
+	private String numberPhone;
 	
 	@Column(name="start", nullable = false)
-	private SimpleDateFormat start; 
+	private String start; 
 	
 	@Column(name="status",nullable = false,length = 100)
-	private String status;
+	private String status="APPROVAL";
 	
-	@Column(name="account_id",nullable = false)
-	private Account accoutnId;
+	@Column(name="accountId",nullable = false)
+	private int accountId;
+	
+	@Column(name="doctorId")
+	private int doctorId;
+	
+	public Appointment() {
+		super();
+	}
 
+
+	public Appointment(String fullName, String birthday, String gender, String address, String numberPhone,
+			String start, int accountId, int doctorId) {
+		//super();
+		this.fullName = fullName;
+		this.birthday = birthday;
+		this.gender = gender;
+		this.address = address;
+		this.numberPhone = numberPhone;
+		this.start = start;
+		this.accountId = accountId;
+		this.doctorId = doctorId;
+		
+	}
+
+	
 	public int getId() {
 		return id;
 	}
@@ -64,19 +87,19 @@ public class Appointment implements Serializable{
 		this.id = id;
 	}
 
-	public String getFullname() {
-		return fullname;
+	public String getFullName() {
+		return fullName;
 	}
 
-	public void setFullname(String fullname) {
-		this.fullname = fullname;
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
 	}
 
-	public Date getBirthday() {
+	public String getBirthday() {
 		return birthday;
 	}
 
-	public void setBirthday(Date birthday) {
+	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
 
@@ -96,19 +119,19 @@ public class Appointment implements Serializable{
 		this.address = address;
 	}
 
-	public Long getNumberPhone() {
+	public String getNumberPhone() {
 		return numberPhone;
 	}
 
-	public void setNumberPhone(Long numberPhone) {
+	public void setNumberPhone(String numberPhone) {
 		this.numberPhone = numberPhone;
 	}
 
-	public SimpleDateFormat getStart() {
+	public String getStart() {
 		return start;
 	}
 
-	public void setStart(SimpleDateFormat start) {
+	public void setStart(String start) {
 		this.start = start;
 	}
 
@@ -120,13 +143,34 @@ public class Appointment implements Serializable{
 		this.status = status;
 	}
 
-	public Account getAccoutnId() {
-		return accoutnId;
+	public int getAccoutnId() {
+		return accountId;
 	}
 
-	public void setAccoutnId(Account accoutnId) {
-		this.accoutnId = accoutnId;
+	public void setAccoutnId(int accountId) {
+		this.accountId = accountId;
 	}
+
+
+	public int getAccountId() {
+		return accountId;
+	}
+
+
+	public void setAccountId(int accountId) {
+		this.accountId = accountId;
+	}
+
+
+	public int getDoctorId() {
+		return doctorId;
+	}
+
+
+	public void setDoctorId(int doctorId) {
+		this.doctorId = doctorId;
+	}
+	
 	
 	
 	

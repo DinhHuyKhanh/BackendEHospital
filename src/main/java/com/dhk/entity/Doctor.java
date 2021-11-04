@@ -1,7 +1,7 @@
 package com.dhk.entity;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,7 +32,7 @@ public class Doctor implements Serializable {
 	private String fullName;
 	
 	@Column(name="birthday")
-	private Date birthday;
+	private String birthday;
 	
 	
 	@Column(name="gender")
@@ -42,12 +42,27 @@ public class Doctor implements Serializable {
 	@Column(name="address", length = 255)
 	private String address;
 	
-	@Column(name="numberPhone")
-	private Long numberPhone;
+	@Column(name="numberPhone", unique = true)
+	private String numberPhone;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "department_id",referencedColumnName = "id")
-	private Department department;	
+	private Department department;
+
+	public Doctor( String fullName, String birthday, String gender, String address, String numberPhone,
+			Department department) {
+		super();
+		this.fullName = fullName;
+		this.birthday = birthday;
+		this.gender = gender;
+		this.address = address;
+		this.numberPhone = numberPhone;
+		this.department = department;
+	}
+	
+	public Doctor() {
+		super();
+	}
 
 	public int getId() {
 		return id;
@@ -65,14 +80,7 @@ public class Doctor implements Serializable {
 		this.fullName = fullName;
 	}
 
-	public Date getBirthday() {
-		return birthday;
-	}
-
-	public void setBirthday(Date birthday) {
-		this.birthday = birthday;
-	}
-
+	
 	public String getGender() {
 		return gender;
 	}
@@ -89,16 +97,31 @@ public class Doctor implements Serializable {
 		this.address = address;
 	}
 
-	public Long getNumberPhone() {
+	public String getNumberPhone() {
 		return numberPhone;
 	}
 
-	public void setNumberPhone(Long numberPhone) {
+	public void setNumberPhone(String numberPhone) {
 		this.numberPhone = numberPhone;
 	}
 
 	public String getDepartment() {
 		return department.getDepartment();
 	}
+
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
+	}
+
+	public String getBirthday() {
+		return birthday;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
+	
+	
+	
 	
 }

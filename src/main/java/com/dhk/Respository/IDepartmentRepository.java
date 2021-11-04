@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.dhk.entity.Department;
 
 @Repository
-public interface IDepartmentRepository extends JpaRepository<Department, Long> {
-
+public interface IDepartmentRepository extends JpaRepository<Department, Integer> {
+	boolean existsByDepartment( String name);
 }
