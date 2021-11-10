@@ -24,7 +24,7 @@ public class DoctorController {
 	IDoctorService service;
 	
 	@PostMapping("/create")
-	public ResponseEntity<?> createDepartment( @Validated @RequestBody DoctorDTO doctor ){
+	public ResponseEntity<?> createDoctor( @Validated @RequestBody DoctorDTO doctor ){
 		
 		return new ResponseEntity<ResponseJwt>(service.registerDoctor(doctor), HttpStatus.OK);
 	}

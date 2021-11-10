@@ -42,6 +42,18 @@ public class Doctor implements Serializable {
 	@Column(name="address", length = 255)
 	private String address;
 	
+	
+	@Column(name="experience", length = 255)
+	private int experience; // kinh nghiem
+	
+	@Column(name="degree", length = 255)
+	private String degree; // hoc vi
+	
+	
+	@Column(name="cost")
+	private int cost; // chi phí. 
+	
+	
 	@Column(name="numberPhone", unique = true)
 	private String numberPhone;
 	
@@ -49,17 +61,22 @@ public class Doctor implements Serializable {
 	@JoinColumn(name = "department_id",referencedColumnName = "id")
 	private Department department;
 
-	public Doctor( String fullName, String birthday, String gender, String address, String numberPhone,
-			Department department) {
+	
+	
+	public Doctor(String fullName, String birthday, String gender, String address, int experience,
+			String degree, int cost, String numberPhone, Department department) {
 		super();
 		this.fullName = fullName;
 		this.birthday = birthday;
 		this.gender = gender;
 		this.address = address;
+		this.experience = experience;
+		this.degree = degree;
+		this.cost = cost;
 		this.numberPhone = numberPhone;
 		this.department = department;
 	}
-	
+
 	public Doctor() {
 		super();
 	}
@@ -120,8 +137,28 @@ public class Doctor implements Serializable {
 	public void setDepartment(Department department) {
 		this.department = department;
 	}
-	
-	
-	
-	
+
+	public int getExperience() {
+		return experience;
+	}
+
+	public void setExperience(int experience) {
+		this.experience = experience;
+	}
+
+	public String getDegree() {
+		return degree;
+	}
+
+	public void setDegree(String degree) {
+		this.degree = degree;
+	}
+
+	public int getCost() {
+		return cost;
+	}
+
+	public void setCost(int cost) {
+		this.cost = cost;
+	}
 }

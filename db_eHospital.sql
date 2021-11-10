@@ -27,6 +27,9 @@ CREATE TABLE IF NOT EXISTS `Department`(
 CREATE TABLE IF NOT EXISTS `Doctor`(
 	id 			INT AUTO_INCREMENT PRIMARY KEY,
     fullName 	NVARCHAR(255) DEFAULT NULL,
+    experience		INT,
+    cost			INT,
+    degree			NVARCHAR(255),			
 	birthday		DATE, -- ngày sinh của người đặt
     gender 			ENUM("Male","Female"), -- giới tínH
     address			NVARCHAR(255), -- địa chỉ người đặt 

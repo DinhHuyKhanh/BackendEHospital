@@ -7,10 +7,15 @@ public class DoctorDTO {
 	private String address;
 	private String numberPhone;
 	private int departmentId;
+	private int cost;
+	private int experience;
+	private String degree;
+	
+	
 	
 	
 	public DoctorDTO(String fullName, String birthday, String gender, String address, String numberPhone,
-			int departmentId) {
+			int departmentId, int cost, int experience, String degree) {
 		super();
 		this.fullName = fullName;
 		this.birthday = birthday;
@@ -18,8 +23,10 @@ public class DoctorDTO {
 		this.address = address;
 		this.numberPhone = numberPhone;
 		this.departmentId = departmentId;
+		this.cost = cost;
+		this.experience = experience;
+		this.degree = degree;
 	}
-	
 	public String getFullName() {
 		return fullName;
 	}
@@ -56,5 +63,31 @@ public class DoctorDTO {
 	public void setDepartmentId(int departmentId) {
 		this.departmentId = departmentId;
 	}
+
+	public int getCost() {
+		return cost;
+	}
+
+	public void setCost(int cost) {
+		this.cost = cost;
+	}
+
+	public int getExperience() {
+		return experience;
+	}
+
+	public void setExperience(int experience) {
+		this.experience = experience;
+	}
+
+	public String getDegree() {
+		return degree;
+	}
+
+	public void setDegree(String degree) {
+		this.degree = degree;
+	}
+	
+	
 	
 }
