@@ -73,6 +73,13 @@
 		    <artifactId>spring-security-config</artifactId>
 		    <version>5.5.0</version>
 		</dependency>
+		
+					<!-- https://mvnrepository.com/artifact/com.github.aqiu202.huawei/huawei-sms-spring-boot-starter -->
+			<dependency>
+			    <groupId>com.github.aqiu202.huawei</groupId>
+			    <artifactId>huawei-sms-spring-boot-starter</artifactId>
+			    <version>1.0.2</version>
+			</dependency>
 
 		 
 		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
@@ -81,8 +88,8 @@
 		    <artifactId>spring-security-web</artifactId>
 		    <version>5.5.0</version>
 		</dependency>
-		
-		
+			
+
 	</dependencies>
 	
 	

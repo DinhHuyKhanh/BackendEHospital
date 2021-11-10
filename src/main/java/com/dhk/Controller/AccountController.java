@@ -1,5 +1,6 @@
 package com.dhk.Controller;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +24,7 @@ public class AccountController {
 	
 	@Autowired
 	private IAccountDetailsService service;
-	
+	String urlScope = "https://oauth-api.cloud.huawei.com/rest.php";
 
 	@PostMapping("/signin")
 	public ResponseEntity<?> authenticateAccount( @Validated @RequestBody LoginRequest loginRequest){
@@ -35,5 +36,5 @@ public class AccountController {
 		
 		return new ResponseEntity<MessageResponse> (service.registerAccount(signupRequest),HttpStatus.OK);
 	}
-
+	
 }
