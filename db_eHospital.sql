@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `Appointment`(
     accountId		INT NOT NULL, -- tài khoản đặt lịch
     doctorId		INT,
     `start` 		DATETIME NOT NULL, -- thời gian khám bệnh
-	`status`		ENUM("SUCCESS","APPROVAL","ABORT") NOT NULL DEFAULT "APPROVAL"
+	`status`		ENUM("SUCCESS","PENDING","ABORT") NOT NULL DEFAULT "PENDING"
 );
 
 INSERT INTO `role`
