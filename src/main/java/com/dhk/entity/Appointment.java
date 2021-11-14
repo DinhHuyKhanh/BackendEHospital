@@ -51,7 +51,7 @@ public class Appointment implements Serializable{
 	private String start; 
 	
 	@Column(name="status",nullable = false,length = 100)
-	private String status="APPROVAL";
+	private String status="PENDING";
 	
 	@Column(name="accountId",nullable = false)
 	private int accountId;
