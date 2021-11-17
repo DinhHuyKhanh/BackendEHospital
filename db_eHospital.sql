@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `Doctor`(
 	id 			INT AUTO_INCREMENT PRIMARY KEY,
     fullName 	NVARCHAR(255) DEFAULT NULL,
     experience		INT,
-    cost			INT,
+    price			INT,
     degree			NVARCHAR(255),			
 	birthday		DATE, -- ngày sinh của người đặt
     gender 			ENUM("Male","Female"), -- giới tínH
@@ -42,14 +42,17 @@ CREATE TABLE IF NOT EXISTS `Doctor`(
 CREATE TABLE IF NOT EXISTS `Appointment`(
 	id				INT AUTO_INCREMENT PRIMARY KEY, -- truong dinh danh
 	fullName 		NVARCHAR(255) DEFAULT NULL, -- họ và tên đầy đủ của người hẹn
-    birthday		DATE, -- ngày sinh của người đặt
+    birthday		VARCHAR(50), -- ngày sinh của người đặt
     gender 			ENUM("Male","Female"), -- giới tính
     address			NVARCHAR(255), -- địa chỉ người đặt
     numberPhone		VARCHAR(15) NOT NULL DEFAULT '', -- số điện thoại của người đặt
     accountId		INT NOT NULL, -- tài khoản đặt lịch
     doctorId		INT,
-    `start` 		DATETIME NOT NULL, -- thời gian khám bệnh
-	`status`		ENUM("SUCCESS","PENDING","ABORT") NOT NULL DEFAULT "PENDING"
+    departmentId	INT,
+    dateAppointment 		DATETIME NOT NULL, -- thời gian khám bệnh
+	`status`		ENUM("SUCCESS","PENDING","ABORT") NOT NULL DEFAULT "PENDING",
+	CONSTRAINT pk_appointment	FOREIGN KEY(departmentId)	REFERENCES `Department`(id),
+    CONSTRAINT pk_doctor		FOREIGN KEY(doctorId) REFERENCES `Doctor`(id)
 );
 
 INSERT INTO `role`

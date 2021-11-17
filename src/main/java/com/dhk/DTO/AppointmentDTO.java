@@ -8,10 +8,11 @@ public class AppointmentDTO {
 	private String gender;
 	private String address;
 	private String numberPhone;
-	private String start;
+	private String dateAppointment;
 	private String status;
 	private int accountId;
 	private int doctorId;
+	private int departmentId;
 	
 	public int getId() {
 		return id;
@@ -49,11 +50,11 @@ public class AppointmentDTO {
 	public void setNumberPhone(String numberPhone) {
 		this.numberPhone = numberPhone;
 	}
-	public String getStart() {
-		return start;
+	public String getDateAppointment() {
+		return dateAppointment;
 	}
-	public void setStart(String start) {
-		this.start = start;
+	public void setDateAppointment(String dateAppointment) {
+		this.dateAppointment = dateAppointment;
 	}
 	public String getStatus() {
 		return status;
@@ -76,6 +77,14 @@ public class AppointmentDTO {
 	public int getAccountId() {
 		return accountId;
 	}
+	public int getDepartmentId() {
+		return departmentId;
+	}
+	public void setDepartmentId(int departmentId) {
+		this.departmentId = departmentId;
+	}
+	
+	
 	
 	
 }

@@ -2,6 +2,7 @@ package com.dhk.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -60,7 +62,11 @@ public class Doctor implements Serializable {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "department_id",referencedColumnName = "id")
 	private Department department;
-
+	
+	@OneToMany(mappedBy = "doctor")
+	List<Appointment> appointments;
+	
+	
 	
 	
 	public Doctor(String fullName, String birthday, String gender, String address, int experience,
@@ -106,17 +112,17 @@ public class Doctor implements Serializable {
 		this.gender = gender;
 	}
 
-	public String getAddress() {
-		return address;
-	}
+//	public String getAddress() {
+//		return address;
+//	}
 
 	public void setAddress(String address) {
 		this.address = address;
 	}
 
-	public String getNumberPhone() {
-		return numberPhone;
-	}
+//	public String getNumberPhone() {
+//		return numberPhone;
+//	}
 
 	public void setNumberPhone(String numberPhone) {
 		this.numberPhone = numberPhone;
@@ -130,9 +136,9 @@ public class Doctor implements Serializable {
 		this.birthday = birthday;
 	}
 
-	public String getBirthday() {
-		return birthday;
-	}
+//	public String getBirthday() {
+//		return birthday;
+//	}
 
 	public void setDepartment(Department department) {
 		this.department = department;

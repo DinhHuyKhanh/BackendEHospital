@@ -66,7 +66,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 					,"/api/auth/signin"
 					,"/api/v1/departments",
 					"/api/v1/appointments/create",
-					"/api/v1/appointments/update")
+					"/api/v1/appointments/update",
+					"/api/v1/doctors/id={id}")
 		.permitAll()
 		.antMatchers("/api/v1/departments/**",
 				"/api/v1/doctors/create",

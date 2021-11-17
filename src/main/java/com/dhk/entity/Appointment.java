@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -47,17 +48,26 @@ public class Appointment implements Serializable{
 	@Column(name="numberPhone", nullable = false)
 	private String numberPhone;
 	
-	@Column(name="start", nullable = false)
-	private String start; 
+	@Column(name="dateAppointment", nullable = false)
+	private String dateAppointment; 
 	
 	@Column(name="status",nullable = false,length = 100)
 	private String status="PENDING";
 	
+	
 	@Column(name="accountId",nullable = false)
 	private int accountId;
 	
-	@Column(name="doctorId")
-	private int doctorId;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "doctorId",referencedColumnName = "id")
+	private Doctor doctor;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "departmentId",referencedColumnName = "id")
+	private Department department;
+	
+//	@Column(name="doctorId")
+//	private int doctorId;
 	
 	public Appointment() {
 		super();
@@ -65,17 +75,17 @@ public class Appointment implements Serializable{
 
 
 	public Appointment(String fullName, String birthday, String gender, String address, String numberPhone,
-			String start, int accountId, int doctorId) {
+			String dateAppointment, int accountId, Doctor doctor,Department department ) {
 		//super();
 		this.fullName = fullName;
 		this.birthday = birthday;
 		this.gender = gender;
 		this.address = address;
 		this.numberPhone = numberPhone;
-		this.start = start;
+		this.dateAppointment = dateAppointment;
 		this.accountId = accountId;
-		this.doctorId = doctorId;
-		
+		this.doctor = doctor;
+		this.department = department;
 	}
 
 	
@@ -127,12 +137,12 @@ public class Appointment implements Serializable{
 		this.numberPhone = numberPhone;
 	}
 
-	public String getStart() {
-		return start;
+	public String getDateAppointment() {
+		return dateAppointment;
 	}
 
-	public void setStart(String start) {
-		this.start = start;
+	public void setDateAppointment(String dateAppointment) {
+		this.dateAppointment = dateAppointment;
 	}
 
 	public String getStatus() {
@@ -162,16 +172,22 @@ public class Appointment implements Serializable{
 	}
 
 
-	public int getDoctorId() {
-		return doctorId;
+	public Doctor getDoctor() {
+		return doctor;
 	}
 
 
-	public void setDoctorId(int doctorId) {
-		this.doctorId = doctorId;
+	public void setDoctor(Doctor doctor) {
+		this.doctor = doctor;
 	}
-	
-	
-	
-	
+
+
+	public Department getDepartment() {
+		return department;
+	}
+
+
+	public void setDepartment(Department department) {
+		this.department = department;
+	}	
 }

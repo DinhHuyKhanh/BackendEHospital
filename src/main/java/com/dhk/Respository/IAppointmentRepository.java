@@ -13,4 +13,5 @@ import com.dhk.utils.ResponseJwt;
 public interface IAppointmentRepository extends JpaRepository<Appointment, Integer> {
 
 	List<Appointment> 	findApoinAppointmentsByAccountId(int id);
+
 }
