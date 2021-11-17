@@ -27,11 +27,8 @@ public class DepartmentController {
 	
 	@GetMapping
 	public ResponseEntity<?> getAllDepartment(){
-		ResponseJwt result = new ResponseJwt();
 		List<Department> departments = departmentService.getAllDepartments();
-		result.setMessage("OK");
-		result.setData(departments);
-		return new ResponseEntity<ResponseJwt>(result, HttpStatus.OK);
+		return new ResponseEntity<List<Department>>(departments, HttpStatus.OK);
 	}
 	
 	@PostMapping("/create")

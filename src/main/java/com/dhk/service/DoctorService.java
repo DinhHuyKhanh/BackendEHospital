@@ -1,5 +1,6 @@
 package com.dhk.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,4 +45,13 @@ public class DoctorService implements IDoctorService {
 		return result;
 	}
 
+	@Override
+	public List<Doctor> getDoctorByDepartment(int id) {
+		// TODO Auto-generated method stub
+		Optional<Department> department = departmentRepository.findById(id);
+		List<Doctor> doctor = repository.findDoctorByDepartment(department.get());
+		return doctor;
+	}
+
+	
 }

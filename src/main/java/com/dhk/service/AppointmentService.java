@@ -8,7 +8,11 @@ import org.springframework.stereotype.Service;
 
 import com.dhk.DTO.AppointmentDTO;
 import com.dhk.Respository.IAppointmentRepository;
+import com.dhk.Respository.IDepartmentRepository;
+import com.dhk.Respository.IDoctorRepository;
 import com.dhk.entity.Appointment;
+import com.dhk.entity.Department;
+import com.dhk.entity.Doctor;
 import com.dhk.utils.ResponseJwt;
 
 @Service
@@ -16,6 +20,13 @@ public class AppointmentService implements IAppointmentService {
 
 	@Autowired 
 	private IAppointmentRepository repository;
+	
+	@Autowired 
+	private IDepartmentRepository departmentRepository;
+	
+	@Autowired
+	private IDoctorRepository doctorRepository;
+	
 	@Override
 	public ResponseJwt findAll() {
 		// TODO Auto-generated method stub
@@ -49,8 +60,12 @@ public class AppointmentService implements IAppointmentService {
 	@Override
 	public ResponseJwt createAppointment(AppointmentDTO appointmentDTO) {
 		// TODO Auto-generated method stub
+		
+		 Optional<Doctor> doctor = doctorRepository.findById(appointmentDTO.getDoctorId());
+		Optional<Department> department = departmentRepository.findById(appointmentDTO.getDepartmentId());
+		
 		Appointment appointment = new Appointment(appointmentDTO.getFullName(),appointmentDTO.getBirthday(),appointmentDTO.getGender(),
-				appointmentDTO.getAddress(),appointmentDTO.getNumberPhone(),appointmentDTO.getStart(),appointmentDTO.getAccoutnId(), appointmentDTO.getDoctorId());
+				appointmentDTO.getAddress(),appointmentDTO.getNumberPhone(),appointmentDTO.getDateAppointment(),appointmentDTO.getAccoutnId(), doctor.get(), department.get());
 		
 		ResponseJwt result = new ResponseJwt();
 		try {
@@ -70,6 +85,10 @@ public class AppointmentService implements IAppointmentService {
 	public ResponseJwt updateAppointment(AppointmentDTO appointmentDTO) {
 		// TODO Auto-generated method stub
 		Optional<Appointment> appointment = repository.findById( appointmentDTO.getId());
+	
+		 Optional<Doctor> doctor = doctorRepository.findById(appointmentDTO.getDoctorId());
+		Optional<Department> department = departmentRepository.findById(appointmentDTO.getDepartmentId());
+			
 		ResponseJwt result = new ResponseJwt();
 		if(appointment.get().getStatus().equals("APPROVAL") == false)
 		{
@@ -83,8 +102,9 @@ public class AppointmentService implements IAppointmentService {
 		appointment.get().setAddress(appointmentDTO.getAddress());
 		appointment.get().setGender(appointmentDTO.getGender());
 		appointment.get().setNumberPhone(appointmentDTO.getNumberPhone());
-		appointment.get().setStart(appointmentDTO.getStart());
-		appointment.get().setDoctorId(appointmentDTO.getDoctorId());
+		appointment.get().setDateAppointment(appointmentDTO.getDateAppointment());
+		appointment.get().setDoctor(doctor.get());
+		appointment.get().setDepartment(department.get());
 		appointment.get().setStatus(appointmentDTO.getStatus());;
 		
 		try {

@@ -31,6 +31,9 @@ public class Department implements Serializable {
 	@OneToMany(mappedBy = "department")
 	List<Doctor> doctors;
 
+	@OneToMany(mappedBy = "department")
+	List<Appointment> appointments;
+	
 	public int getId() {
 		return id;
 	}
@@ -47,9 +50,9 @@ public class Department implements Serializable {
 		this.department = department;
 	}
 
-	public List<Doctor> getDoctors() {
-		return doctors;
-	}
+//	public List<Doctor> getDoctors() {
+//		return doctors;
+//	}
 
 
 	

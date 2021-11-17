@@ -38,7 +38,7 @@ public class AppointmentController {
 	@PostMapping("/create")
 	public ResponseEntity<?> createAppointment( @Validated @RequestBody AppointmentDTO appointment ){
 		ResponseJwt result = new ResponseJwt();
-		if(appointment.getStart() == null || appointment.getNumberPhone() == null || appointment.getStart() =="" || appointment.getNumberPhone() =="")
+		if(appointment.getDateAppointment() == null || appointment.getNumberPhone() == null || appointment.getDateAppointment() =="" || appointment.getNumberPhone() =="")
 		{
 			result.setMessage("status: ERROR");
 			result.setData("appointment date or number phone is null !");
