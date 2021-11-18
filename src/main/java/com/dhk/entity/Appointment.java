@@ -153,10 +153,6 @@ public class Appointment implements Serializable{
 		this.status = status;
 	}
 
-	public int getAccoutnId() {
-		return accountId;
-	}
-
 	public void setAccoutnId(int accountId) {
 		this.accountId = accountId;
 	}
@@ -172,22 +168,41 @@ public class Appointment implements Serializable{
 	}
 
 
-	public Doctor getDoctor() {
-		return doctor;
+	public String getDoctorName() {
+		return doctor.getFullName();
 	}
-
-
+	
+	public int getDoctorPrice() {
+		return doctor.getCost();
+	}
+	
+	public int getDoctorExperience() {
+		return doctor.getExperience();
+	}
+	
+	public String getDegree() {
+		return doctor.getDegree();
+	}
+	
 	public void setDoctor(Doctor doctor) {
 		this.doctor = doctor;
 	}
 
 
-	public Department getDepartment() {
-		return department;
+	public String getDepartment() {
+		return department.getDepartment();
 	}
 
 
 	public void setDepartment(Department department) {
 		this.department = department;
 	}	
+	
+	public int getDepartmentId() {
+		return this.department.getId();
+	}
+	
+	public int getDoctorId() {
+		return this.doctor.getId();
+	}
 }
