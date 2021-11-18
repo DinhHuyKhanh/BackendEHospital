@@ -52,8 +52,8 @@ public class Doctor implements Serializable {
 	private String degree; // hoc vi
 	
 	
-	@Column(name="cost")
-	private int cost; // chi phí. 
+	@Column(name="price")
+	private int price; // chi phí. 
 	
 	
 	@Column(name="numberPhone", unique = true)
@@ -67,7 +67,7 @@ public class Doctor implements Serializable {
 	List<Appointment> appointments;
 	
 	public Doctor(String fullName, String birthday, String gender, String address, int experience,
-			String degree, int cost, String numberPhone, Department department) {
+			String degree, int price, String numberPhone, Department department) {
 		super();
 		this.fullName = fullName;
 		this.birthday = birthday;
@@ -75,7 +75,7 @@ public class Doctor implements Serializable {
 		this.address = address;
 		this.experience = experience;
 		this.degree = degree;
-		this.cost = cost;
+		this.price = price;
 		this.numberPhone = numberPhone;
 		this.department = department;
 	}
@@ -158,10 +158,10 @@ public class Doctor implements Serializable {
 	}
 
 	public int getCost() {
-		return cost;
+		return price;
 	}
 
-	public void setCost(int cost) {
-		this.cost = cost;
+	public void setCost(int price) {
+		this.price = price;
 	}
 }
