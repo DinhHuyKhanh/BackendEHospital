@@ -67,13 +67,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 					,"/api/v1/departments",
 					"/api/v1/appointments/create",
 					"/api/v1/appointments/update",
-					"/api/v1/doctors/id={id}")
+					"/api/v1/doctors/id={id}",
+					"/api/v1/doctors/department/id={id}",
+					"/api/v1/departments/id={id}"
+				)
 		.permitAll()
 		.antMatchers("/api/v1/departments/**",
 				"/api/v1/doctors/create",
 				"/api/v1/appointments/**")
 		.hasAuthority("ADMIN")
-		.antMatchers("/api/v1/appointments/id={id}")
+		.antMatchers("/api/v1/appointments/id={id}",
+				"/api/v1/appointments/abort/{id}")
 		.hasAuthority("USER")
 		.anyRequest()
 		.authenticated();

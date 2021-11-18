@@ -66,9 +66,6 @@ public class Doctor implements Serializable {
 	@OneToMany(mappedBy = "doctor")
 	List<Appointment> appointments;
 	
-	
-	
-	
 	public Doctor(String fullName, String birthday, String gender, String address, int experience,
 			String degree, int cost, String numberPhone, Department department) {
 		super();

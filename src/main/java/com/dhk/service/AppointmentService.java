@@ -1,6 +1,7 @@
 package com.dhk.service;
 
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,33 +29,17 @@ public class AppointmentService implements IAppointmentService {
 	private IDoctorRepository doctorRepository;
 	
 	@Override
-	public ResponseJwt findAll() {
+	public List<Appointment> findAll() {
 		// TODO Auto-generated method stub
-		ResponseJwt result = new ResponseJwt();
-		try {
-			result.setMessage("status: 200");
-			result.setData(repository.findAll());
-		}catch(Exception e){
-			result.setMessage(" http error 500 !");
-			result.setData("Failed !");
-			return result;
-		}
-		return result;
+		 List<Appointment> appointments = repository.findAll();
+		return appointments;
 	}
 
 	@Override
-	public ResponseJwt findByAccountId(int id) {
+	public List<Appointment> findByAccountId(int id) {
 		// TODO Auto-generated method stub
-		ResponseJwt result = new ResponseJwt();
-		try {
-			result.setMessage("status: 200");
-			result.setData(repository.findApoinAppointmentsByAccountId(id));
-		}catch(Exception e){
-			result.setMessage(" http error 500 !");
-			result.setData("Failed !");
-			return result;
-		}
-		return result;
+		
+		 return repository.findApoinAppointmentsByAccountId(id);
 	}
 
 	@Override
@@ -90,7 +75,7 @@ public class AppointmentService implements IAppointmentService {
 		Optional<Department> department = departmentRepository.findById(appointmentDTO.getDepartmentId());
 			
 		ResponseJwt result = new ResponseJwt();
-		if(appointment.get().getStatus().equals("APPROVAL") == false)
+		if(appointment.get().getStatus().equals("PENDING") == false)
 		{
 			result.setMessage("status: ERROR");
 			result.setData("state cannot be changed !");
@@ -118,4 +103,27 @@ public class AppointmentService implements IAppointmentService {
 		
 		return result;
 	}
+
+	@Override
+	public ResponseJwt AbortAppointment(int id) {
+		// TODO Auto-generated method stub
+		Optional<Appointment> entity=  repository.findById(id);
+		ResponseJwt result = new ResponseJwt();
+		if(entity.get().getStatus().equals("PENDING")) {
+			try {
+			entity.get().setStatus("ABORT");
+			repository.save(entity.get());
+			result.setMessage("status: 200");
+			
+			}catch(Exception e) {
+				result.setMessage("error");
+			}
+		}else {
+			result.setMessage("error");
+		}
+		
+		return result;
+	}
+	
+	
 }
